@@ -20,13 +20,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -36,11 +36,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final ImagePicker _picker = ImagePicker();
-
-  void shareImage(imagePath) {
-    Share.shareFiles([imagePath], text: 'Great picture');
-  }
-
   Future pickFile() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
@@ -86,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  if (pickedImage != null) Share.shareFiles([pickedImage.path], text: 'Great picture');
+                  if (pickedImage != null) Share.shareFiles([pickedImage.path], text: 'Picture details ');
                 },
                 child: const Text("Share image"),
               ),
